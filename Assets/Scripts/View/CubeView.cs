@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zappar;
 using TMPro;
+using FiniteStateMachine.Machine;
 
 namespace PlazAR.View
 {
     [RequireComponent(typeof(Animation))]
     public class CubeView : MonoBehaviour, ICubeView
     {
+        public StateMachine stateMachine;
         private Animation animationController;
         private ZapparInstantTrackingTarget zapparInstantTrackingTarget;
         
-        private bool alreadyFell = false;
-
         void Awake()
         {
             animationController = GetComponent<Animation>();
@@ -26,25 +26,12 @@ namespace PlazAR.View
 
         void Update()
         {
-            if (zapparInstantTrackingTarget != null)
-            {
-                if (zapparInstantTrackingTarget.UserHasPlaced && !alreadyFell)
-                {
-                    alreadyFell = true;
-                    PlayAnimation("Entrada");
-                }
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                PlayAnimation("Entrada");   
-            }
+            stateMachine.Update();
         }
 
         public void SetZapparInstantTrackingTarget(ZapparInstantTrackingTarget zapparInstantTrackingTarget)
         {
-            Debug.Log("SetZapparInstantTrackingTarget");
-            this.zapparInstantTrackingTarget = zapparInstantTrackingTarget;
+            stateMachine = new StateMachine(zapparInstantTrackingTarget, this);
         }
     }
 }
