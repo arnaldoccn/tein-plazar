@@ -34,7 +34,6 @@ namespace FiniteStateMachine.State
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-
             if (isPlaying && !cubeView.animationController.isPlaying)
              {
                 // Animation finished playing

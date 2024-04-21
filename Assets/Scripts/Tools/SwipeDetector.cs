@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityCommunity.UnitySingleton;
 
 namespace PlazAR.Tools
 {
-    public class SwipeDetector : MonoBehaviour
+    public class SwipeDetector : PersistentMonoSingleton<SwipeDetector>
     {
         private Vector2 fingerDownPosition;
         private Vector2 fingerUpPosition;

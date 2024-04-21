@@ -1,18 +1,13 @@
 using PlazAR.View;
 using UnityEngine;
 using PlazAR.Tools;
+using System;
+using System.Collections;
 
 namespace FiniteStateMachine.State
 {
     public class HoverState : IState
     {
-
-        /*private PlayerController player;
-
-        // color to change player (alternately: pass in color value with constructor)
-        private Color meshColor = Color.gray;
-        public Color MeshColor { get => meshColor; set => meshColor = value; }*/
-
         private CubeView cubeView;
 
         private bool isPlaying = false;
@@ -21,7 +16,8 @@ namespace FiniteStateMachine.State
 
         private int maxCount = 250;
 
-        // pass in any parameters you need in the constructors
+        private float delayInSeconds = 2;
+
         public HoverState(CubeView cubeView)
         {
             this.cubeView = cubeView;
@@ -33,12 +29,11 @@ namespace FiniteStateMachine.State
             cubeView.PlayAnimation("Hover_Simples");
             SwipeDetector.OnSwipeRight += HandleSwipeRight;
             isPlaying = true;
-            // code that runs when we first enter the state
+            CoroutineHandler.Instance.StartCoroutineOnHandler(ExecuteDelayedCoroutine(delayInSeconds, () => {cubeView.stateMachine.TransitionTo(cubeView.stateMachine.shakeState);}));
             Debug.Log("Entering Fall State");
         }
 
-        // per-frame logic, include condition to transition to a new state
-        public void Update()
+        /*public void Update()
         {
             count++;
             if (count >= maxCount)
@@ -46,11 +41,28 @@ namespace FiniteStateMachine.State
                 count = 0;
                 cubeView.stateMachine.TransitionTo(cubeView.stateMachine.shakeState);
             }
+        }*/
+
+        private static IEnumerator ExecuteDelayedCoroutine(float delayInSeconds, Action action)
+        {
+            yield return new WaitForSeconds(delayInSeconds);
+            action?.Invoke();
         }
 
         void HandleSwipeRight()
         {
+            CoroutineHandler.Instance.StopCoroutines();
+            SwipeDetector.OnSwipeRight -= HandleSwipeRight;
             cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountOneState);
+        }
+
+        public void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                CoroutineHandler.Instance.StopCoroutines();
+                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountOneState);
+            }
         }
 
         public void Exit()

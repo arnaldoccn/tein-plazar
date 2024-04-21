@@ -35,17 +35,18 @@ namespace FiniteStateMachine.State
 
         void HandleSwipeRight()
         {
+            SwipeDetector.OnSwipeRight -= HandleSwipeRight;
             cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountOneState);
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-
             if (isPlaying && !cubeView.animationController.isPlaying)
              {
                 // Animation finished playing
                 Debug.Log("Animation finished");
+                SwipeDetector.OnSwipeRight -= HandleSwipeRight;
                 isPlaying = false;
                 cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hoverState);
             }

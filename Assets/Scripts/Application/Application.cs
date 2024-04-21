@@ -4,10 +4,11 @@ using UnityEngine;
 using Zappar;
 using PlazAR.View;
 using PlazAR.Model;
+using UnityCommunity.UnitySingleton;
 
 namespace PlazAR.Application
 {
-    public class Application : MonoBehaviour
+    public class Application : PersistentMonoSingleton<Application>
     {
         [SerializeField]
         private CubeView cubeView;
@@ -16,7 +17,7 @@ namespace PlazAR.Application
 
         private CubePresenter cubePresenter;
 
-        private void Awake()
+        void Awake()
         {
             cubePresenter = new CubePresenter(new CubeModel(), cubeView, zapparInstantTrackingTarget);
         }

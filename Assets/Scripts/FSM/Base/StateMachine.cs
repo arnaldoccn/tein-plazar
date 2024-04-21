@@ -19,6 +19,11 @@ namespace FiniteStateMachine.Machine
         public ShakeState shakeState { get; private set; }
         public HoverState hoverState { get; private set; }
         public MountOne mountOneState { get; private set; }
+        public MountTwo mountTwoState { get; private set; }
+        public MountThree mountThreeState { get; private set; }
+        public WakeUpState wakeUpState { get; private set; }
+        public ExplodeState explodeState { get; private set; }
+        public ShakeTwoState shakeTwoState { get; private set; }
 
         // event to notify other objects of the state change
         public event Action<IState> stateChanged;
@@ -33,6 +38,11 @@ namespace FiniteStateMachine.Machine
             shakeState = new ShakeState(cubeView);
             hoverState = new HoverState(cubeView);
             mountOneState = new MountOne(cubeView);
+            mountTwoState = new MountTwo(cubeView);
+            mountThreeState = new MountThree(cubeView);
+            wakeUpState = new WakeUpState(cubeView);
+            explodeState = new ExplodeState(cubeView);
+            shakeTwoState = new ShakeTwoState(cubeView);
 
             Initialize(entryState);
         }

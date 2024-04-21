@@ -4,7 +4,7 @@ using PlazAR.Tools;
 
 namespace FiniteStateMachine.State
 {
-    public class MountOne : IState
+    public class ShakeTwoState : IState
     {
 
         /*private PlayerController player;
@@ -18,32 +18,29 @@ namespace FiniteStateMachine.State
         private bool isPlaying = false;
 
         // pass in any parameters you need in the constructors
-        public MountOne(CubeView cubeView)
+        public ShakeTwoState(CubeView cubeView)
         {
             this.cubeView = cubeView;
-            SwipeDetector.OnSwipeLeft += HandleSwipeLeft;
             //this.player = player;
         }
 
         public void Enter()
         {   
-            cubeView.PlayAnimation("Montagem_1");
+            cubeView.PlayAnimation("Chacoalha");
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
         }
 
-        void HandleSwipeLeft()
-        {
-            SwipeDetector.OnSwipeLeft -= HandleSwipeLeft;
-            cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountTwoState);
-        }
-
+        // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                 cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountTwoState);
+            if (isPlaying && !cubeView.animationController.isPlaying)
+             {
+                // Animation finished playing
+                Debug.Log("Animation finished");
+                isPlaying = false;
+                //cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hoverState);
             }
         }
 
