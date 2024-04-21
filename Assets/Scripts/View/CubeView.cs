@@ -11,7 +11,7 @@ namespace PlazAR.View
     public class CubeView : MonoBehaviour, ICubeView
     {
         public StateMachine stateMachine;
-        private Animation animationController;
+        public Animation animationController { get; private set; }
         private ZapparInstantTrackingTarget zapparInstantTrackingTarget;
         
         void Awake()
@@ -21,7 +21,7 @@ namespace PlazAR.View
 
         public void PlayAnimation(string name)
         {
-            animationController.Play(name);
+            animationController.CrossFade(name);
         }
 
         void Update()

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FiniteStateMachine.State
 {
-    public class FallState : IState
+    public class ShakeState : IState
     {
 
         /*private PlayerController player;
@@ -20,7 +20,7 @@ namespace FiniteStateMachine.State
         private bool isPlaying = false;
 
         // pass in any parameters you need in the constructors
-        public FallState(CubeView cubeView)
+        public ShakeState(CubeView cubeView)
         {
             this.cubeView = cubeView;
             //this.player = player;
@@ -28,7 +28,7 @@ namespace FiniteStateMachine.State
 
         public void Enter()
         {   
-            cubeView.PlayAnimation("Entrada");
+            cubeView.PlayAnimation("Tremilique");
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
@@ -43,7 +43,7 @@ namespace FiniteStateMachine.State
                 // Animation finished playing
                 Debug.Log("Animation finished");
                 isPlaying = false;
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.getUpState);
+                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hoverState);
             }
         }
 

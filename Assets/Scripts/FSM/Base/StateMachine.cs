@@ -13,8 +13,11 @@ namespace FiniteStateMachine.Machine
     public class StateMachine
     {
         public IState CurrentState { get; private set; }
-        public EntryState entryState;
-        public FallState fallState;
+        public EntryState entryState { get; private set; }
+        public FallState fallState { get; private set; }
+        public GetUpState getUpState { get; private set; }
+        public ShakeState shakeState { get; private set; }
+        public HoverState hoverState { get; private set; }
 
         // event to notify other objects of the state change
         public event Action<IState> stateChanged;
@@ -25,6 +28,9 @@ namespace FiniteStateMachine.Machine
             // create an instance for each state and pass in PlayerController
             entryState = new EntryState(zapparInstantTrackingTarget, cubeView);
             fallState = new FallState(cubeView);
+            getUpState = new GetUpState(cubeView);
+            shakeState = new ShakeState(cubeView);
+            hoverState = new HoverState(cubeView);
 
             Initialize(entryState);
         }
