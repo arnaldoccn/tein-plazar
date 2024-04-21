@@ -5,18 +5,20 @@ using Zappar;
 using PlazAR.View;
 using PlazAR.Model;
 
-public class Application : MonoBehaviour
+namespace PlazAR.Application
 {
-    [SerializeField]
-    private CubeView cubeView;
-    [SerializeField]
-    private ZapparInstantTrackingTarget zapparInstantTrackingTarget;
-
-    private CubePresenter cubePresenter;
-
-    private void Awake()
+    public class Application : MonoBehaviour
     {
-        cubePresenter = new CubePresenter(new CubeModel(), cubeView, zapparInstantTrackingTarget);
-    }
+        [SerializeField]
+        private CubeView cubeView;
+        [SerializeField]
+        private ZapparInstantTrackingTarget zapparInstantTrackingTarget;
 
+        private CubePresenter cubePresenter;
+
+        private void Awake()
+        {
+            cubePresenter = new CubePresenter(new CubeModel(), cubeView, zapparInstantTrackingTarget);
+        }
+    }
 }

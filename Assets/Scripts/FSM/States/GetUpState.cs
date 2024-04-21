@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using PlazAR.View;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FiniteStateMachine.State

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using PlazAR.View;
 using UnityEngine;
 using Zappar;

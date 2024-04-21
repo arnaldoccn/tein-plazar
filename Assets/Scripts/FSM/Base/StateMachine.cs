@@ -18,6 +18,7 @@ namespace FiniteStateMachine.Machine
         public GetUpState getUpState { get; private set; }
         public ShakeState shakeState { get; private set; }
         public HoverState hoverState { get; private set; }
+        public MountOne mountOneState { get; private set; }
 
         // event to notify other objects of the state change
         public event Action<IState> stateChanged;
@@ -31,6 +32,7 @@ namespace FiniteStateMachine.Machine
             getUpState = new GetUpState(cubeView);
             shakeState = new ShakeState(cubeView);
             hoverState = new HoverState(cubeView);
+            mountOneState = new MountOne(cubeView);
 
             Initialize(entryState);
         }

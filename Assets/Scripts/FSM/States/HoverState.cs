@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using PlazAR.View;
-using Unity.VisualScripting;
 using UnityEngine;
+using PlazAR.Tools;
 
 namespace FiniteStateMachine.State
 {
@@ -21,7 +19,7 @@ namespace FiniteStateMachine.State
 
         private int count = 0;
 
-        private int maxCount = 1000;
+        private int maxCount = 250;
 
         // pass in any parameters you need in the constructors
         public HoverState(CubeView cubeView)
@@ -33,6 +31,7 @@ namespace FiniteStateMachine.State
         public void Enter()
         {   
             cubeView.PlayAnimation("Hover_Simples");
+            SwipeDetector.OnSwipeRight += HandleSwipeRight;
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
@@ -47,6 +46,11 @@ namespace FiniteStateMachine.State
                 count = 0;
                 cubeView.stateMachine.TransitionTo(cubeView.stateMachine.shakeState);
             }
+        }
+
+        void HandleSwipeRight()
+        {
+            cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountOneState);
         }
 
         public void Exit()

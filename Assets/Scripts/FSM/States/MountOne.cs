@@ -1,10 +1,9 @@
 using PlazAR.View;
 using UnityEngine;
-using PlazAR.Tools;
 
 namespace FiniteStateMachine.State
 {
-    public class ShakeState : IState
+    public class MountOne : IState
     {
 
         /*private PlayerController player;
@@ -18,7 +17,7 @@ namespace FiniteStateMachine.State
         private bool isPlaying = false;
 
         // pass in any parameters you need in the constructors
-        public ShakeState(CubeView cubeView)
+        public MountOne(CubeView cubeView)
         {
             this.cubeView = cubeView;
             //this.player = player;
@@ -26,16 +25,10 @@ namespace FiniteStateMachine.State
 
         public void Enter()
         {   
-            cubeView.PlayAnimation("Tremilique");
-            SwipeDetector.OnSwipeRight += HandleSwipeRight;
+            cubeView.PlayAnimation("Montagem_1");
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
-        }
-
-        void HandleSwipeRight()
-        {
-            cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountOneState);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -46,8 +39,6 @@ namespace FiniteStateMachine.State
              {
                 // Animation finished playing
                 Debug.Log("Animation finished");
-                isPlaying = false;
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hoverState);
             }
         }
 
