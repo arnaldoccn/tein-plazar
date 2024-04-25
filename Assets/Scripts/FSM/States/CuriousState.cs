@@ -1,24 +1,17 @@
 using PlazAR.View;
 using UnityEngine;
-using PlazAR.Tools;
 
 namespace FiniteStateMachine.State
 {
-    public class ShakeTwoState : IState
+    public class CuriousState : IState
     {
-
-        /*private PlayerController player;
-
-        // color to change player (alternately: pass in color value with constructor)
-        private Color meshColor = Color.gray;
-        public Color MeshColor { get => meshColor; set => meshColor = value; }*/
 
         private CubeView cubeView;
 
         private bool isPlaying = false;
 
         // pass in any parameters you need in the constructors
-        public ShakeTwoState(CubeView cubeView)
+        public CuriousState(CubeView cubeView)
         {
             this.cubeView = cubeView;
             //this.player = player;
@@ -26,13 +19,12 @@ namespace FiniteStateMachine.State
 
         public void Enter()
         {   
-            cubeView.PlayAnimation("Chacoalha");
+            cubeView.PlayAnimation("Curious");
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
         }
 
-        // per-frame logic, include condition to transition to a new state
         public void Update()
         {
             if (isPlaying && !cubeView.animationController.isPlaying)
@@ -40,7 +32,7 @@ namespace FiniteStateMachine.State
                 // Animation finished playing
                 Debug.Log("Animation finished");
                 isPlaying = false;
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hiState);
+                //cubeView.stateMachine.TransitionTo(cubeView.stateMachine.explodeState);
             }
         }
 

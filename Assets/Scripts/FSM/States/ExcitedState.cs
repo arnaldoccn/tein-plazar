@@ -1,28 +1,23 @@
 using PlazAR.View;
 using UnityEngine;
+using PlazAR.Tools;
 
 namespace FiniteStateMachine.State
 {
-    public class MountThree : IState
+    public class ExcitedState : IState
     {
-
         private CubeView cubeView;
 
         private bool isPlaying = false;
-
-        // pass in any parameters you need in the constructors
-        public MountThree(CubeView cubeView)
+        public ExcitedState(CubeView cubeView)
         {
             this.cubeView = cubeView;
-            //this.player = player;
         }
 
         public void Enter()
         {   
-            cubeView.PlayAnimation("Montagem_3");
+            cubeView.PlayAnimation("Excited");
             isPlaying = true;
-            // code that runs when we first enter the state
-            Debug.Log("Entering Fall State");
         }
 
         public void Update()
@@ -32,7 +27,7 @@ namespace FiniteStateMachine.State
                 // Animation finished playing
                 Debug.Log("Animation finished");
                 isPlaying = false;
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.explodeState);
+                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.presentationState);
             }
         }
 

@@ -12,6 +12,10 @@ namespace FiniteStateMachine.Machine
     [Serializable]
     public class StateMachine
     {
+
+        public delegate void PresentationExitEventHandler();
+        public event PresentationExitEventHandler OnPresentationExitEventHandler;
+
         public IState CurrentState { get; private set; }
         public EntryState entryState { get; private set; }
         public FallState fallState { get; private set; }
@@ -24,6 +28,11 @@ namespace FiniteStateMachine.Machine
         public WakeUpState wakeUpState { get; private set; }
         public ExplodeState explodeState { get; private set; }
         public ShakeTwoState shakeTwoState { get; private set; }
+        public HiState hiState { get; private set; }
+        public ExcitedState excitedState { get; private set; }
+        public PresentationState presentationState { get; private set; }
+        public LetsGoState letsGoState { get; private set; }
+        public CuriousState curiousState { get; private set; }
 
         // event to notify other objects of the state change
         public event Action<IState> stateChanged;
@@ -43,8 +52,20 @@ namespace FiniteStateMachine.Machine
             wakeUpState = new WakeUpState(cubeView);
             explodeState = new ExplodeState(cubeView);
             shakeTwoState = new ShakeTwoState(cubeView);
+            hiState = new HiState(cubeView);
+            excitedState = new ExcitedState(cubeView);
+            presentationState = new PresentationState(cubeView);
+            letsGoState = new LetsGoState(cubeView);
+            curiousState = new CuriousState(cubeView);
+
+            presentationState.OnPresentationExitEventHandler += HandlePresentationExitEvent;
 
             Initialize(entryState);
+        }
+
+        private void HandlePresentationExitEvent()
+        {
+            OnPresentationExitEventHandler();
         }
 
         // set the starting state
