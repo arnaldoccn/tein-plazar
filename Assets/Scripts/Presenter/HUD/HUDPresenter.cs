@@ -10,12 +10,15 @@ namespace PlazAR.Presenter
         private HUDView hudView;
         public delegate void LetsGoClickedEventHandler();
         public event LetsGoClickedEventHandler OnLetsGoClickedEvent;
+        public delegate void CollaborationClickedEventHandler();
+        public event CollaborationClickedEventHandler OnCollaborationClickedEvent;
 
         public HUDPresenter(HUDModel hudModel, HUDView hudView)
         {
             this.hudModel = hudModel;
             this.hudView = hudView;
             this.hudView.OnLetsGoClickedEvent += HandleLetsGoClickedEvent;
+            this.hudView.OnCollaborationClickedEvent += HandleCollaborationClickedEvent;
         }
 
         private void HandleLetsGoClickedEvent()
@@ -23,9 +26,19 @@ namespace PlazAR.Presenter
             OnLetsGoClickedEvent();
         }
 
+        private void HandleCollaborationClickedEvent()
+        {
+            OnCollaborationClickedEvent();
+        }
+
         public void ShowLetsGoButton()
         {
             hudView.ShowLetsGoButton();
+        }
+
+        public void ShowMenu()
+        {
+            hudView.ShowMenu();
         }
     }
 }

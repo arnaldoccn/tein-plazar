@@ -25,8 +25,15 @@ namespace PlazAR.Application
         {
             cubePresenter = new CubePresenter(new CubeModel(), cubeView, zapparInstantTrackingTarget);
             cubePresenter.OnPresentationExitEventHandler += HandlePresentationExit;
+            cubePresenter.OnShowMenu += HandleShowMenu;
             hudPresenter = new HUDPresenter(new HUDModel(), hudView);
             hudPresenter.OnLetsGoClickedEvent += HandleOnLetsGoClickedEvent;
+            hudPresenter.OnCollaborationClickedEvent += HandleCollaborationClickedEvent;
+        }
+
+        private void HandleCollaborationClickedEvent()
+        {
+            cubePresenter.CollaborationClicked();
         }
         
         private void HandleOnLetsGoClickedEvent()
@@ -37,6 +44,11 @@ namespace PlazAR.Application
         private void HandlePresentationExit()
         {
             hudPresenter.ShowLetsGoButton();
+        }
+
+        private void HandleShowMenu()
+        {
+            hudPresenter.ShowMenu();
         }
     }
 }

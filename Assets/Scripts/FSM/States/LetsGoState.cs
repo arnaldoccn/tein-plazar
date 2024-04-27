@@ -30,7 +30,7 @@ namespace FiniteStateMachine.State
 
         private void HandleLetsGoClickedEvent()
         {
-            cubeView.stateMachine.TransitionTo(cubeView.stateMachine.curiousState);
+            cubeView.stateMachine.TransitionTo(cubeView.stateMachine.collaborationIntroState);
         }
     }
 }

@@ -41,17 +41,6 @@ namespace FiniteStateMachine.State
                  cubeView.stateMachine.TransitionTo(cubeView.stateMachine.fallState);
             }
 
-            // if we're no longer grounded, transition to jumping
-           /* if (!player.IsGrounded)
-            {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.jumpState);
-            }
-
-            // if we move above a minimum threshold, transition to walking
-            if (Mathf.Abs(player.CharController.velocity.x) > 0.1f || Mathf.Abs(player.CharController.velocity.z) > 0.1f)
-            {
-                player.PlayerStateMachine.TransitionTo(player.PlayerStateMachine.walkState);
-            }*/
         }
 
         public void Exit()

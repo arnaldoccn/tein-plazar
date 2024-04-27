@@ -21,8 +21,14 @@ namespace PlazAR.View
         public delegate void LetsGoClickedEventHandler();
         public event LetsGoClickedEventHandler OnLetsGoClickedEvent;
 
+        public delegate void CollaborationClickedEventHandler();
+        public event CollaborationClickedEventHandler OnCollaborationClickedEvent;
+
         public delegate void PresentationExitEventHandler();
         public event PresentationExitEventHandler OnPresentationExitEventHandler;
+
+        public delegate void ShowMenuEvent();
+        public event ShowMenuEvent OnShowMenu;
         
         private int talkAudioIndex = 0;
 
@@ -62,6 +68,21 @@ namespace PlazAR.View
         public void LetsGoClicked()
         {
             OnLetsGoClickedEvent();
+        }
+
+        public void CollaborationClicked()
+        {
+            OnCollaborationClickedEvent();
+        }
+
+        public void PlayQueue(string name)
+        {
+            animationController.PlayQueued(name);
+        }
+
+        public void ShowMenu()
+        {
+            OnShowMenu();
         }
     }
 }
