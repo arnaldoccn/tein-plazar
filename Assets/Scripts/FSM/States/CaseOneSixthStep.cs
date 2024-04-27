@@ -4,21 +4,21 @@ using PlazAR.Tools;
 
 namespace FiniteStateMachine.State
 {
-    public class CollaborationExplanationTwoState : IState
+    public class CaseOneSixthStep : IState
     {
         private CubeView cubeView;
 
         private bool isPlaying = false;
+        private bool alreadyPlayed = false;
 
-        public CollaborationExplanationTwoState(CubeView cubeView)
+        public CaseOneSixthStep(CubeView cubeView)
         {
             this.cubeView = cubeView;
         }
 
         public void Enter()
         {   
-            cubeView.PlayAnimation("Talk");
-            cubeView.PlayNextTalkAudio();
+            cubeView.PlayAnimation("Curious");
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
@@ -27,17 +27,30 @@ namespace FiniteStateMachine.State
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            if(!cubeView.audioSource.isPlaying)
+
+            if (isPlaying && !cubeView.animationController.isPlaying)
+             {
+                // Animation finished playing
+                Debug.Log("Animation finished");
+                isPlaying = false;
+                alreadyPlayed = true;
+                cubeView.PlayAnimation("Talk");
+                cubeView.PlayNextTalkAudio();
+            }
+
+            if(!cubeView.audioSource.isPlaying && alreadyPlayed)
              {
                 // Animation finished playing
                 Debug.Log("Audio finished");
                 isPlaying = false;
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.collaborationExplanationThreeState);
+                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.caseOneSeventhStep);
             }
         }
 
+
         public void Exit()
         {
+            alreadyPlayed = false;
             // code that runs when we exit the state
             Debug.Log("Exiting Fall State");
         }

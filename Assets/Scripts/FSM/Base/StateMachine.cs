@@ -33,6 +33,7 @@ namespace FiniteStateMachine.Machine
         public PresentationState presentationState { get; private set; }
         public LetsGoState letsGoState { get; private set; }
         public CuriousState curiousState { get; private set; }
+
         public CollaborationIntroState collaborationIntroState { get; private set; }
         public CollaborationExplanationOneState collaborationExplanationOneState { get; private set; }
         public CollaborationExplanationTwoState collaborationExplanationTwoState { get; private set; }
@@ -42,6 +43,14 @@ namespace FiniteStateMachine.Machine
         public CollaborationExplanationSixState collaborationExplanationSixState { get; private set; }
         public CollaborationExplanationSevenState collaborationExplanationSevenState { get; private set; }
         public CollaborationExplanationEightState collaborationExplanationEightState { get; private set; }
+
+        public CaseOneFirstStep caseOneFirstStep { get; private set; }
+        public CaseOneSecondStep caseOneSecondStep { get; private set; }
+        public CaseOneThirdStep caseOneThirdStep { get; private set; }
+        public CaseOneFourthStep caseOneFourthStep { get; private set; }
+        public CaseOneFifthStep caseOneFifthStep { get; private set; }
+        public CaseOneSixthStep caseOneSixthStep { get; private set; }
+        public CaseOneSeventhStep caseOneSeventhStep { get; private set; }
 
         // event to notify other objects of the state change
         public event Action<IState> stateChanged;
@@ -66,6 +75,7 @@ namespace FiniteStateMachine.Machine
             presentationState = new PresentationState(cubeView);
             letsGoState = new LetsGoState(cubeView);
             curiousState = new CuriousState(cubeView);
+
             collaborationIntroState = new CollaborationIntroState(cubeView);
             collaborationExplanationOneState = new CollaborationExplanationOneState(cubeView);
             collaborationExplanationTwoState = new CollaborationExplanationTwoState(cubeView);
@@ -75,6 +85,14 @@ namespace FiniteStateMachine.Machine
             collaborationExplanationSixState = new CollaborationExplanationSixState(cubeView);
             collaborationExplanationSevenState = new CollaborationExplanationSevenState(cubeView);
             collaborationExplanationEightState = new CollaborationExplanationEightState(cubeView);
+
+            caseOneFirstStep = new CaseOneFirstStep(cubeView);
+            caseOneSecondStep = new CaseOneSecondStep(cubeView);
+            caseOneThirdStep = new CaseOneThirdStep(cubeView);
+            caseOneFourthStep = new CaseOneFourthStep(cubeView);
+            caseOneFifthStep = new CaseOneFifthStep(cubeView);
+            caseOneSixthStep = new CaseOneSixthStep(cubeView);
+            caseOneSeventhStep = new CaseOneSeventhStep(cubeView);
 
             presentationState.OnPresentationExitEventHandler += HandlePresentationExitEvent;
 

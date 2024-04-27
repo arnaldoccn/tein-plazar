@@ -4,13 +4,10 @@ using PlazAR.Tools;
 
 namespace FiniteStateMachine.State
 {
-    public class CollaborationExplanationTwoState : IState
+    public class CaseOneFirstStep : IState
     {
         private CubeView cubeView;
-
-        private bool isPlaying = false;
-
-        public CollaborationExplanationTwoState(CubeView cubeView)
+        public CaseOneFirstStep(CubeView cubeView)
         {
             this.cubeView = cubeView;
         }
@@ -19,7 +16,6 @@ namespace FiniteStateMachine.State
         {   
             cubeView.PlayAnimation("Talk");
             cubeView.PlayNextTalkAudio();
-            isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
         }
@@ -31,8 +27,7 @@ namespace FiniteStateMachine.State
              {
                 // Animation finished playing
                 Debug.Log("Audio finished");
-                isPlaying = false;
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.collaborationExplanationThreeState);
+                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.caseOneSecondStep);
             }
         }
 

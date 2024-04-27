@@ -7,5 +7,6 @@ namespace PlazAR.View
         void PlayNextTalkAudio();
         void LetsGoClicked();
         void ShowMenu();
+        void SetCubeIndexTalkToMenu();
     }
 }

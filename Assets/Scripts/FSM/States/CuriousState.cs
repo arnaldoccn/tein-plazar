@@ -11,8 +11,9 @@ namespace FiniteStateMachine.State
 
         // pass in any parameters you need in the constructors
         public CuriousState(CubeView cubeView)
-        {
+        { 
             this.cubeView = cubeView;
+            this.cubeView.OnCollaborationClickedEvent += HandleCollaborationClicked;
             //this.player = player;
         }
 
@@ -26,6 +27,11 @@ namespace FiniteStateMachine.State
             cubeView.ShowMenu();
         }
 
+        private void HandleCollaborationClicked()
+        {
+            Debug.Log("HandleCollaborationClicked");
+            cubeView.stateMachine.TransitionTo(cubeView.stateMachine.caseOneFirstStep);
+        }
 
         public void Exit()
         {

@@ -24,7 +24,7 @@ public class HUDView : MonoBehaviour, IHUDView
         OnLetsGoClickedEvent();
     }
 
-    public void     ShowMenu()
+    public void ShowMenu()
     {
         uiFadeManager.ExecuteFade(UIFadeManager.FadeType.FadeIn);
         collaborationButton.interactable = true;
@@ -39,6 +39,7 @@ public class HUDView : MonoBehaviour, IHUDView
 
     private void OnCollaborationClicked()
     {
+        Debug.Log("OnCollaborationClicked");
         collaborationButton.onClick.RemoveAllListeners();
         collaborationButton.interactable = false;
         uiFadeManager.ExecuteFade(UIFadeManager.FadeType.FadeOut);

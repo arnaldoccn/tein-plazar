@@ -45,6 +45,7 @@ namespace PlazAR.View
 
         public void PlayNextTalkAudio()
         {
+            Debug.Log(talkAudioIndex);
             audioSource.PlayOneShot(talkAudios[talkAudioIndex]);
             talkAudioIndex++;
         }
@@ -83,6 +84,11 @@ namespace PlazAR.View
         public void ShowMenu()
         {
             OnShowMenu();
+        }
+
+        public void SetCubeIndexTalkToMenu()
+        {
+            talkAudioIndex = 11;
         }
     }
 }
