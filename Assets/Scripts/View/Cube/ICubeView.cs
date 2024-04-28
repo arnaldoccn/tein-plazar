@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace PlazAR.View
 {
     public interface ICubeView
@@ -8,5 +10,7 @@ namespace PlazAR.View
         void LetsGoClicked();
         void ShowMenu();
         void SetCubeIndexTalkToMenu();
+
+        void PlaySFX(AudioClip audioClip);
     }
 }

@@ -12,6 +12,8 @@ namespace PlazAR.View
     public class CubeView : MonoBehaviour, ICubeView
     {
         [SerializeField]
+        private AudioSource sfxSource;
+        [SerializeField]
         private List<AudioClip> talkAudios = new();
         public StateMachine stateMachine;
         public Animation animationController { get; private set; }
@@ -31,6 +33,7 @@ namespace PlazAR.View
         public event ShowMenuEvent OnShowMenu;
         
         private int talkAudioIndex = 0;
+        private string animationName = "";
 
         void Awake()
         {
@@ -40,6 +43,7 @@ namespace PlazAR.View
 
         public void PlayAnimation(string name)
         {
+            animationName = name;
             animationController.CrossFade(name);
         }
 
@@ -89,6 +93,11 @@ namespace PlazAR.View
         public void SetCubeIndexTalkToMenu()
         {
             talkAudioIndex = 11;
+        }
+
+        public void PlaySFX(AudioClip audioClip)
+        {
+            sfxSource.PlayOneShot(audioClip);
         }
     }
 }

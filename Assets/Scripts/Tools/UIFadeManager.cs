@@ -8,7 +8,7 @@ using UnityCommunity.UnitySingleton;
 
 namespace PlazAR.Tools
 {
-    public class UIFadeManager : PersistentMonoSingleton<UIFadeManager>
+    public class UIFadeManager : MonoBehaviour
     {
         public enum FadeType
         {
