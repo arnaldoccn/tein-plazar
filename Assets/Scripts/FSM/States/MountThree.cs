@@ -38,6 +38,7 @@ namespace FiniteStateMachine.State
 
         public void Exit()
         {
+            cubeView.HideHand();
             // code that runs when we exit the state
             Debug.Log("Exiting Fall State");
         }

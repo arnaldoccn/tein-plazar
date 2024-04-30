@@ -27,15 +27,16 @@ namespace FiniteStateMachine.State
         public void Enter()
         {   
             cubeView.PlayAnimation("Tremilique");
-            SwipeDetector.OnSwipeRight += HandleSwipeRight;
+            SwipeDetector.OnSwipeDown += HandleSwipeDown;
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
+            
         }
 
-        void HandleSwipeRight()
+        void HandleSwipeDown()
         {
-            SwipeDetector.OnSwipeRight -= HandleSwipeRight;
+            SwipeDetector.OnSwipeDown -= HandleSwipeDown;
             cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountOneState);
         }
 
@@ -46,7 +47,7 @@ namespace FiniteStateMachine.State
              {
                 // Animation finished playing
                 Debug.Log("Animation finished");
-                SwipeDetector.OnSwipeRight -= HandleSwipeRight;
+                SwipeDetector.OnSwipeDown -= HandleSwipeDown;
                 isPlaying = false;
                 cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hoverState);
             }

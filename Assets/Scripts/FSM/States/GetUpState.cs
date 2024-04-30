@@ -29,6 +29,7 @@ namespace FiniteStateMachine.State
             isPlaying = true;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
+            cubeView.ShowHand();
         }
 
         // per-frame logic, include condition to transition to a new state

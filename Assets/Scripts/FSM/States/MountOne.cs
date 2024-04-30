@@ -21,7 +21,7 @@ namespace FiniteStateMachine.State
         public MountOne(CubeView cubeView)
         {
             this.cubeView = cubeView;
-            SwipeDetector.OnSwipeLeft += HandleSwipeLeft;
+            SwipeDetector.OnSwipeUp += HandleSwipeUp;
             //this.player = player;
         }
 
@@ -33,9 +33,9 @@ namespace FiniteStateMachine.State
             Debug.Log("Entering Fall State");
         }
 
-        void HandleSwipeLeft()
+        void HandleSwipeUp()
         {
-            SwipeDetector.OnSwipeLeft -= HandleSwipeLeft;
+            SwipeDetector.OnSwipeUp -= HandleSwipeUp;
             cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountTwoState);
         }
 

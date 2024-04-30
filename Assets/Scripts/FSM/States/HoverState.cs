@@ -27,7 +27,7 @@ namespace FiniteStateMachine.State
         public void Enter()
         {   
             cubeView.PlayAnimation("Hover_Simples");
-            SwipeDetector.OnSwipeRight += HandleSwipeRight;
+            SwipeDetector.OnSwipeDown += HandleSwipeDown;
             isPlaying = true;
             CoroutineHandler.Instance.StartCoroutineOnHandler(ExecuteDelayedCoroutine(delayInSeconds, () => {cubeView.stateMachine.TransitionTo(cubeView.stateMachine.shakeState);}));
             Debug.Log("Entering Fall State");
@@ -49,10 +49,10 @@ namespace FiniteStateMachine.State
             action?.Invoke();
         }
 
-        void HandleSwipeRight()
+        void HandleSwipeDown()
         {
             CoroutineHandler.Instance.StopCoroutines();
-            SwipeDetector.OnSwipeRight -= HandleSwipeRight;
+            SwipeDetector.OnSwipeDown -= HandleSwipeDown;
             cubeView.stateMachine.TransitionTo(cubeView.stateMachine.mountOneState);
         }
 

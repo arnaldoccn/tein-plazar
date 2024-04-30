@@ -8,6 +8,8 @@ public class HUDView : MonoBehaviour, IHUDView
     [SerializeField]
     private UIFadeManager uiFadeManager;
     [SerializeField]
+    private UIFadeManager uiLetsGoFadeManager;
+    [SerializeField]
     private Button letsGoButton;
     [SerializeField]
     private Button collaborationButton;
@@ -20,7 +22,9 @@ public class HUDView : MonoBehaviour, IHUDView
 
     private void OnLetsGoClicked()
     {
-        letsGoButton.gameObject.SetActive(false);
+        letsGoButton.onClick.RemoveAllListeners();
+        letsGoButton.interactable = false;
+        uiLetsGoFadeManager.ExecuteFade(UIFadeManager.FadeType.FadeOut);
         OnLetsGoClickedEvent();
     }
 
@@ -33,13 +37,13 @@ public class HUDView : MonoBehaviour, IHUDView
 
     public void ShowLetsGoButton()
     {
-        letsGoButton.gameObject.SetActive(true);
+        uiLetsGoFadeManager.ExecuteFade(UIFadeManager.FadeType.FadeIn);
+        letsGoButton.interactable = true;
         letsGoButton.onClick.AddListener(OnLetsGoClicked);
     }
 
     private void OnCollaborationClicked()
     {
-        Debug.Log("OnCollaborationClicked");
         collaborationButton.onClick.RemoveAllListeners();
         collaborationButton.interactable = false;
         uiFadeManager.ExecuteFade(UIFadeManager.FadeType.FadeOut);
