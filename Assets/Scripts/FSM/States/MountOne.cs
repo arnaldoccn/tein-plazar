@@ -21,12 +21,11 @@ namespace FiniteStateMachine.State
         public MountOne(CubeView cubeView)
         {
             this.cubeView = cubeView;
-            SwipeDetector.OnSwipeUp += HandleSwipeUp;
-            //this.player = player;
         }
 
         public void Enter()
         {   
+            SwipeDetector.OnSwipeUp += HandleSwipeUp;
             cubeView.PlayAnimation("Montagem_1");
             isPlaying = true;
             // code that runs when we first enter the state

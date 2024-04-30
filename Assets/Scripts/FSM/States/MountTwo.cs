@@ -21,7 +21,6 @@ namespace FiniteStateMachine.State
         public MountTwo(CubeView cubeView)
         {
             this.cubeView = cubeView;
-            SwipeDetector.OnSwipeUp += HandleSwipeUp;
             //this.player = player;
         }
 
@@ -29,6 +28,7 @@ namespace FiniteStateMachine.State
         {   
             cubeView.PlayAnimation("Montagem_2");
             isPlaying = true;
+            SwipeDetector.OnSwipeUp += HandleSwipeUp;
             // code that runs when we first enter the state
             Debug.Log("Entering Fall State");
         }

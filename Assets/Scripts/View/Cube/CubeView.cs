@@ -44,7 +44,7 @@ namespace PlazAR.View
         private int talkAudioIndex = 0;
         private string animationName = "";
 
-        private string currentAnimationName;
+        private string currentAnimationName = "";
         private int currentFrame;
         private bool alreadySet = false;
 
@@ -52,6 +52,11 @@ namespace PlazAR.View
         {
             animationController = GetComponent<Animation>();
             audioSource = GetComponent<AudioSource>();
+            if (!alreadySet)
+            {
+                alreadySet = true;
+                InvokeRepeating("GetAnimationInfo", 0f,  0.000015f);
+            }
         }
 
         public void ShowHand()
@@ -67,12 +72,14 @@ namespace PlazAR.View
 
         void GetAnimationInfo()
         {
-            AnimationState currentAnimationState = animationController[animationName];
+            Debug.Log("GetAnimationInfo");
+            if (animationName != "")
+            {
+                AnimationState currentAnimationState = animationController[animationName];
             currentAnimationName = currentAnimationState.name;
             float currentTimeInSeconds = currentAnimationState.time;
             float framesPerSecond = 30f;
             currentFrame = Mathf.FloorToInt(currentTimeInSeconds * framesPerSecond);
-            Debug.Log("Frame atual: " + currentAnimationName);
 
             switch (currentAnimationName)
             {
@@ -101,7 +108,6 @@ namespace PlazAR.View
                     }
                 break;
                 case "Explosao":
-                    Debug.Log(currentFrame);
                     if (currentFrame == 2)
                     {
                         PlaySFX(sfxList[5]);
@@ -858,15 +864,11 @@ namespace PlazAR.View
                 default:
                 break;
             }
+            }
         }
 
         public void PlayAnimation(string name)
         {
-            if (!alreadySet)
-            {
-                alreadySet = true;
-                InvokeRepeating("GetAnimationInfo", 0f,  0.000015f);
-            }
             animationName = name;
             animationController.CrossFade(name);
         }

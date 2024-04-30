@@ -33,12 +33,15 @@ namespace FiniteStateMachine.State
         {
             if (zapparInstantTrackingTarget.UserHasPlaced)
             {
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.fallState);
+                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hoverState);
+                zapparInstantTrackingTarget.enabled = false;
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                 cubeView.stateMachine.TransitionTo(cubeView.stateMachine.fallState);
+                 cubeView.stateMachine.TransitionTo(cubeView.stateMachine.hoverState);
+                 zapparInstantTrackingTarget.PlaceTrackerAnchor();
+                 zapparInstantTrackingTarget.enabled = false;
             }
 
         }

@@ -26,22 +26,13 @@ namespace FiniteStateMachine.State
 
         public void Enter()
         {   
+            cubeView.ShowHand();
             cubeView.PlayAnimation("Hover_Simples");
             SwipeDetector.OnSwipeDown += HandleSwipeDown;
             isPlaying = true;
             CoroutineHandler.Instance.StartCoroutineOnHandler(ExecuteDelayedCoroutine(delayInSeconds, () => {cubeView.stateMachine.TransitionTo(cubeView.stateMachine.shakeState);}));
             Debug.Log("Entering Fall State");
         }
-
-        /*public void Update()
-        {
-            count++;
-            if (count >= maxCount)
-            {
-                count = 0;
-                cubeView.stateMachine.TransitionTo(cubeView.stateMachine.shakeState);
-            }
-        }*/
 
         private static IEnumerator ExecuteDelayedCoroutine(float delayInSeconds, Action action)
         {
