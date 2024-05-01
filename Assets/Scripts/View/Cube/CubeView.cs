@@ -19,11 +19,13 @@ namespace PlazAR.View
         [SerializeField]
         private GameObject hand;
         [SerializeField]
-        private AudioSource sfxSource;
+        private AudioSource sfxSource, hoverSource;
         [SerializeField]
         private List<AudioClip> sfxList = new();
         [SerializeField]
         private List<AudioClip> talkAudios = new();
+        [SerializeField]
+        private AudioClip hoverClip;
         public StateMachine stateMachine;
         public Animation animationController { get; private set; }
         public AudioSource audioSource { get; private set; }
@@ -81,6 +83,8 @@ namespace PlazAR.View
             float framesPerSecond = 30f;
             currentFrame = Mathf.FloorToInt(currentTimeInSeconds * framesPerSecond);
 
+            Debug.Log(currentAnimationName);
+
             switch (currentAnimationName)
             {
                 case "Tremilique":
@@ -110,6 +114,7 @@ namespace PlazAR.View
                 case "Explosao":
                     if (currentFrame == 2)
                     {
+                        StopHover();
                         PlaySFX(sfxList[5]);
                     }
                     if (currentFrame == 170)
@@ -118,6 +123,7 @@ namespace PlazAR.View
                     }
                     else if (currentFrame == 171)
                     {
+                        PlayHover();
                         eyeMaterial.mainTexture = eyeList[5];
                     }
                     else if (currentFrame == 172)
@@ -704,6 +710,38 @@ namespace PlazAR.View
                     {
                         eyeMaterial.mainTexture = eyeList[1];
                     }
+                    else if (currentFrame == 2)
+                    {
+                        eyeMaterial.mainTexture = eyeList[7];
+                    }
+                    else if (currentFrame == 3)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                    else if (currentFrame == 13)
+                    {
+                        eyeMaterial.mainTexture = eyeList[9];
+                    }
+                    else if (currentFrame == 14)
+                    {
+                        eyeMaterial.mainTexture = eyeList[10];
+                    }
+                    else if (currentFrame == 19)
+                    {
+                        eyeMaterial.mainTexture = eyeList[9];
+                    }
+                    else if (currentFrame == 20)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                    else if (currentFrame == 21)
+                    {
+                        eyeMaterial.mainTexture = eyeList[7];
+                    }
+                    else if (currentFrame == 22)
+                    {
+                        eyeMaterial.mainTexture = eyeList[6];
+                    }
                     else if (currentFrame == 35)
                     {
                         eyeMaterial.mainTexture = eyeList[1];
@@ -726,7 +764,39 @@ namespace PlazAR.View
                     }
                     else if (currentFrame == 40)
                     {
-                        eyeMaterial.mainTexture = eyeList[1];
+                        eyeMaterial.mainTexture = eyeList[6];
+                    }
+                    else if (currentFrame == 48)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                    else if (currentFrame == 49)
+                    {
+                        eyeMaterial.mainTexture = eyeList[10];
+                    }
+                    else if (currentFrame == 50)
+                    {
+                        eyeMaterial.mainTexture = eyeList[5];
+                    }
+                    else if (currentFrame == 51)
+                    {
+                        eyeMaterial.mainTexture = eyeList[0];
+                    }
+                    else if (currentFrame == 61)
+                    {
+                        eyeMaterial.mainTexture = eyeList[5];
+                    }
+                    else if (currentFrame == 62)
+                    {
+                        eyeMaterial.mainTexture = eyeList[9];
+                    }
+                    else if (currentFrame == 63)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                    else if (currentFrame == 64)
+                    {
+                        eyeMaterial.mainTexture = eyeList[7];
                     }
                     else if (currentFrame == 87)
                     {
@@ -748,7 +818,47 @@ namespace PlazAR.View
                     {
                         eyeMaterial.mainTexture = eyeList[2];
                     }
-                    else if (currentFrame == 92)
+                    else if (currentFrame == 102)
+                    {
+                        eyeMaterial.mainTexture = eyeList[1];
+                    }
+                    else if (currentFrame == 103)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                    else if (currentFrame == 104)
+                    {
+                        eyeMaterial.mainTexture = eyeList[9];
+                    }
+                    else if (currentFrame == 115)
+                    {
+                        eyeMaterial.mainTexture = eyeList[9];
+                    }
+                    else if (currentFrame == 116)
+                    {
+                        eyeMaterial.mainTexture = eyeList[10];
+                    }
+                    else if (currentFrame == 117)
+                    {
+                        eyeMaterial.mainTexture = eyeList[5];
+                    }
+                    else if (currentFrame == 118)
+                    {
+                        eyeMaterial.mainTexture = eyeList[4];
+                    }
+                    else if (currentFrame == 119)
+                    {
+                        eyeMaterial.mainTexture = eyeList[10];
+                    }
+                    else if (currentFrame == 120)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                    else if (currentFrame == 132)
+                    {
+                        eyeMaterial.mainTexture = eyeList[7];
+                    }
+                    else if (currentFrame == 133)
                     {
                         eyeMaterial.mainTexture = eyeList[1];
                     }
@@ -836,6 +946,38 @@ namespace PlazAR.View
                     {
                         eyeMaterial.mainTexture = eyeList[1];
                     }
+                     else if (currentFrame == 34)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                     else if (currentFrame == 35)
+                    {
+                        eyeMaterial.mainTexture = eyeList[9];
+                    }
+                     else if (currentFrame == 47)
+                    {
+                        eyeMaterial.mainTexture = eyeList[10];
+                    }
+                     else if (currentFrame == 48)
+                    {
+                        eyeMaterial.mainTexture = eyeList[5];
+                    }
+                     else if (currentFrame == 49)
+                    {
+                        eyeMaterial.mainTexture = eyeList[4];
+                    }
+                     else if (currentFrame == 50)
+                    {
+                        eyeMaterial.mainTexture = eyeList[10];
+                    }
+                     else if (currentFrame == 51)
+                    {
+                        eyeMaterial.mainTexture = eyeList[8];
+                    }
+                     else if (currentFrame == 63)
+                    {
+                        eyeMaterial.mainTexture = eyeList[7];
+                    }
                     else if (currentFrame == 69)
                     {
                         eyeMaterial.mainTexture = eyeList[1];
@@ -860,6 +1002,9 @@ namespace PlazAR.View
                     {
                         eyeMaterial.mainTexture = eyeList[1];
                     }
+                break;
+                case "Hover_Simples":
+                PlayHover();
                 break;
                 default:
                 break;
@@ -925,6 +1070,15 @@ namespace PlazAR.View
         {
             Debug.Log("PlaYSFX: " + name);
             sfxSource.PlayOneShot(audioClip);
+        }
+
+        public void PlayHover()
+        {
+            hoverSource.PlayOneShot(hoverClip);
+        }
+        public void StopHover()
+        {
+            hoverSource.Stop();
         }
     }
 }

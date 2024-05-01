@@ -12,5 +12,7 @@ namespace PlazAR.View
         void SetCubeIndexTalkToMenu();
 
         void PlaySFX(AudioClip audioClip);
+        void PlayHover();
+        void StopHover();
     }
 }
