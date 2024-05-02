@@ -10,6 +10,11 @@ namespace PlazAR.Tools
 {
     public class UIFadeManager : MonoBehaviour
     {
+        [SerializeField]
+        private float fadeDuration = 1f; // Duração do fade (em segundos)
+        [SerializeField]
+        private float fadeInterval = 3f; // Intervalo entre fades repetidos (em segundos)
+
         public enum FadeType
         {
             FadeIn,
@@ -26,7 +31,9 @@ namespace PlazAR.Tools
 
         public List<FadeElement> elementsToFade;
         public bool useSequentialFade = false;
-        public float fadeDuration = 1f;
+
+        public float startDelay = 0f; // Atraso inicial antes de iniciar o fade repetido
+        public float repeatInterval = 5f; // Intervalo entre cada repetição do fade
 
         private void Start()
         {
